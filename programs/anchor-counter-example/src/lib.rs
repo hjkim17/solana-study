@@ -1,4 +1,4 @@
-// requires interface, logic
+use std::mem::size_of;
 
 use anchor_lang::prelude::*;
 
@@ -28,7 +28,7 @@ pub struct Initialize<'info> {
     #[account(
         init,
         payer = authority,
-        space = 8 + 8
+        space = 8 + size_of::<Counter>()
     )]
     pub counter_account: Box<Account<'info, Counter>>,
     pub system_program: Program<'info, System>,
